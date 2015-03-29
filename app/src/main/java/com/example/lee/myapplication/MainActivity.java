@@ -15,15 +15,34 @@ public class MainActivity extends ActionBarActivity {
 
     Button button = null;
 
+    Button button2=null;
+//    Notification notification=null;
+//    NotificationManager notificationManager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.button1);
+        button2=(Button)findViewById(R.id.button2);
+//        notificationManager=NotificationManager
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "An Android Test", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "An Android Test", Toast.LENGTH_SHORT).show();
+
+//                    intent.putExtra("a", "Add");
+                Intent intent = new Intent("com.example.lee.myapplication.ACTION_START");//MainActivity.this, Activity2.class);
+
+                startActivity(intent);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Activity3.class);
+                intent.putExtra("a","hello world");
+                startActivity(intent);
             }
         });
     }
@@ -43,22 +62,23 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         try {
-            Intent intent = new Intent(MainActivity.this, Activity2.class);
             switch (id) {
                 case R.id.add_Menu:
                     Toast.makeText(MainActivity.this, "AddMenu---Click",
                             Toast.LENGTH_SHORT).show();
-                    intent.putExtra("a", "Add");
-
                     break;
                 case R.id.delete_Menu:
                     Toast.makeText(MainActivity.this, "Delete---click", Toast.LENGTH_SHORT).show();
                     break;
 //            intent.putExtra("")
+                case R.id.action_settings:
+
+                    Toast.makeText(MainActivity.this,"Setting",Toast.LENGTH_SHORT).show();
+//                    finish();
+                    break;
                 default:
                     break;
             }
-            startActivity(intent);
         } catch (Exception e) {
             Log.e("error", e.getMessage());
         }
